@@ -1,11 +1,22 @@
-import './App.css';
+import React, {useState} from "react";
+import AddUser from "./components/Users/AddUser";
+import UsersList from "./components/Users/UsersList";
 
 function App() {
-  return (
-    <div className="App">
+    const [users, setUsers] =useState([]);
 
-    </div>
-  );
+    const addUserHandler = enteredUser => {
+        setUsers(prevUsers => {
+            return  [...prevUsers, enteredUser];
+        });
+    }
+
+    return (
+        <div>
+            <AddUser onAddUser={addUserHandler}/>
+            <UsersList users={users}/>
+        </div>
+    );
 }
 
 export default App;
